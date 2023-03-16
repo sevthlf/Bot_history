@@ -26,7 +26,7 @@ token = "5473196991:AAFLgAsmyxyvtE8KOhf7BSCG_xIIZpya3_0"
 #     kb = [
 #         [types.KeyboardButton(text="С пюрешкой")],
 #         [types.KeyboardButton(text="С макарошками")],
-#         [types.KeyboardButton(text="Без пюрешки")]
+#         [types.KeyboardButton(text="Без пюрешки")
 #     ]
 #     keyboard = types.ReplyKeyboardMarkup(
 #         keyboard=kb,
