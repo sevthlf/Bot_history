@@ -1,14 +1,25 @@
+from aiogram import Bot, Dispatcher, types
+import asyncio
 from settings import token
-import requests
 
-base_url = 'https://api.telegram.org/bot'
-base = requests.get(f'{base_url}{token}/getUpdates')
-print(base.json())
+bot = Bot(token=token)
+dp = Dispatcher(bot)
 
-message = base.json()['result'][-1]['message']['text']
-print(message)
-user_id = base.json()['result'][-1]['message']['chat']['id']
-print(user_id)
+@dp.message_handler(commands=["start"])
+async def cmd_start(message: types.Message):
+   await message.answer("Hello!")
 
-# Here i'm using Telegram API for send message to user
-requests.get(f'{base_url}{token}/sendMessage?chat_id={user_id}&text={message}')
+@dp.message_handler(commands=["bye", 'пока', 'au_revoir'])
+async def cmd_bye(message: types.Message):
+   await message.answer("Bye Bye")
+
+@dp.message_handler(commands=["help"])
+async def cmd_help(message: types.Message):
+    await message.reply('Я знаю команды\n/start\n/au_revoir')
+
+async def main():
+    await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
